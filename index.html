@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor de Preguntas</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script defer src="script.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 p-6">
+  <!-- Menú superior -->
+  <div class="flex justify-between items-center bg-white p-4 shadow rounded mb-6">
+    <h1 class="text-3xl font-bold">Editor Aiken</h1>
+
+    <div class="flex items-center space-x-4">
+      <button id="export-txt"
+        class="bg-blue-900 hover:bg-blue-800 text-white px-4 py-2 rounded flex items-center gap-2">
+        <i class="fa-regular fa-floppy-disk"></i> Guardar Aiken
+      </button>
+
+      <input type="file" id="import-txt" class="hidden">
+      <label for="import-txt"
+        class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded cursor-pointer flex items-center gap-2">
+        <i class="fa-solid fa-file-import"></i> Importar Aiken
+      </label>
+
+      <button id="toggle-view"
+        class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded flex items-center gap-2">
+        <i class="fas fa-columns"></i> Alternar Vista
+      </button>
+
+        <!-- Temporizador -->
+        <div id="timer-display" class="text-lg font-semibold text-gray-700" title="Tiempo restante autoguardado">05:00</div>
+        <select id="autosave-interval" class="bg-gray-200 text-black px-4 py-2 rounded" title="Intervalo de autoguardado">
+          <option value="60000">1 min.</option>
+          <option value="300000">5 min.</option>
+          <option value="600000">10 min.</option>
+          <option value="1200000">20 min.</option>
+        </select>
+    </div>
+  </div>
+
+  <!-- Contenedor principal -->
+  <div id="main-container" class="grid grid-cols-1 gap-4">
+
+    <div class="bg-white p-4 shadow rounded" title="Sección de preguntas confirmadas.">
+      <h2 class="text-2xl font-bold mb-4">Editor de Preguntas</h2>
+      <!-- Formulario de preguntas -->
+      <form id="question-form">
+        <div class="mb-4">
+          <label for="question" class="block font-medium">Pregunta:</label>
+          <input type="text" id="question" class="w-full p-2 border rounded" required placeholder="Escribe tu pregunta">
+        </div>
+
+        <div id="options-container" class="mb-4">
+          <label class="block font-medium">Respuestas:</label>
+          <!-- Las respuestas se añaden dinámicamente desde JavaScript -->
+        </div>
+
+        <div class="flex space-x-4">
+          <button type="button" id="add-option"
+            class="bg-blue-900 hover:bg-blue-800 text-white px-4 py-2 rounded flex items-center gap-2">
+            <i class="fas fa-plus"></i> Agregar respuesta
+          </button>
+
+          <button type="submit"
+            class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded flex items-center gap-2">
+            <i class="fas fa-check-circle"></i> Confirmar Pregunta
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Lista de preguntas confirmadas -->
+    <div id="questions-list" class="bg-white p-4 shadow rounded" style="max-height: 40rem; overflow-y: auto;"
+      title="Sección de preguntas confirmadas. ">
+      <h2 class="text-2xl font-bold mb-4">Vista previa de las preguntas confirmadas</h2>
+      <ul id="questions-preview" class="space-y-4"></ul>
+    </div>
+  </div>
+</body>
+
+<small>v1.0.2</small>
+</html>

@@ -269,6 +269,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  window.addEventListener('beforeunload', (e) => {
+    // Establece el mensaje de advertencia genérico
+    e.preventDefault();
+    e.returnValue = ''; // Requerido en algunos navegadores para que aparezca el mensaje de advertencia
+  });
+  
   initializeOptions();
   
 });
